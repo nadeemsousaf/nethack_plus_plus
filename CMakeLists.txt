@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.24)
+project(nethack++)
+
+set(BINARY_DIR ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${BINARY_DIR})
+make_directory(${BINARY_DIR})
+
+add_subdirectory(lib/SDL)
+
+add_executable(nethack++ WIN32
+    src/main.cpp
+)
+target_link_libraries(nethack++ PRIVATE
+    SDL3::SDL3
+)
+set_target_properties(nethack++ PROPERTIES CXX_STANDARD 23)
